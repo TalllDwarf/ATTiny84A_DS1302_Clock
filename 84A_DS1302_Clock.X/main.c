@@ -48,6 +48,8 @@
 #define TRUE 1
 #define FALSE 0
 
+#define MIN_BRIGHTNESS 60
+
 //Number of timer ticks to generate a second
 #define ONE_SECOND_MULTIPLE 2
 
@@ -107,15 +109,15 @@ DS1302_DATA_SET time_ds1302 =
     .clockHalt = 0,
     .minutes = 0,
     .minutesX10 = 3,
-    .H12.hour = 5,
+    .H12.hour = 8,
     .H12.hourX10 = 0,
     .H12.hour_AM_PM = 1,
     .H12.hour_12_24 = 1,
-    .date = 1,
+    .date = 2,
     .dateX10 = 1,
     .month = 6,
     .monthX10 = 0,
-    .day = 1,
+    .day = 5,
     .year = 0,
     .yearX10 = 2,
     .writeProtection = 0,
@@ -199,7 +201,7 @@ uint8_t read_ADC(void)
     //Wait for ADC to finish
     loop_until_bit_is_clear(ADCSRA, ADSC);
 
-    return MAX(50, ADCH);
+    return MAX(MIN_BRIGHTNESS, ADCH);
 }
 
 //////////////////////////
@@ -651,8 +653,8 @@ void update_menu(void)
                         hour--;
                     }
                     
-                    time_ds1302.H24.hourX10 = GET_X10(hour);
-                    time_ds1302.H24.hour = GET_X1(hour);
+                    time_ds1302.H12.hourX10 = GET_X10(hour);
+                    time_ds1302.H12.hour = GET_X1(hour);
                     menuTimeout = MENU_TIMEOUT_MAX;
                 }
 //                else if(PRESSED(buttons.Right_Button_Old, buttons.Right_Button_Stat))
