@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="dist/default/production/84A_DS1302_Clock.X.production.elf">                 
+    <memory name="program">              
+      <units>bytes</units>                 
+      <length>8192</length>                 
+      <used>3127</used>                     
+      <free>5065</free>                     
+    </memory>                              
+    <memory name="data">                 
+      <units>bytes</units>                 
+      <length>512</length>                 
+      <used>17</used>                     
+      <free>495</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
